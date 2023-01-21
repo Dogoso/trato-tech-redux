@@ -1,13 +1,13 @@
-import styles from './Footer.module.scss';
 import {
   FaFacebook,
   FaTwitter,
   FaInstagram
-} from 'react-icons/fa';
+} from "react-icons/fa";
+import styles from "./footer.module.scss";
 
 const iconeProps = {
-  color: 'white',
-  size: 24,
+  color: "white",
+  size: 24
 }
 
 export default function Footer() {
@@ -19,7 +19,7 @@ export default function Footer() {
         <FaInstagram {...iconeProps} />
       </div>
       <span>
-        Desenvolvido por Alura.
+        Desenvolvido por Silas Juan.
       </span>
     </footer>
   )
