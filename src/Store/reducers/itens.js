@@ -228,7 +228,18 @@ const initialState = [{
   categoria: 'som'
 }];
 
-export const itensSlice = createSlice({
+const itensSlice = createSlice({
     name: "itens",
-    initialState
-}).reducer;
+    initialState,
+    reducers: {
+      atualizarFavorito: (state, { payload }) => {
+        state = state.map(item => {
+          if(item.id === payload) item.favorito = !item.favorito;
+          return item;
+        });
+      }
+    }
+});
+
+export const { atualizarFavorito } = itensSlice.actions;
+export const itensReducer = itensSlice.reducer;

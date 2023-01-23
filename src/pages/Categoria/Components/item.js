@@ -7,6 +7,8 @@ import {
   FaCartPlus
 } from 'react-icons/fa';
 import classNames from 'classnames';
+import { useDispatch } from 'react-redux';
+import { atualizarFavorito } from 'Store/reducers/itens';
 
 const iconeProps = {
   size: 24,
@@ -14,6 +16,9 @@ const iconeProps = {
 };
 
 export default function Item(props) {
+
+  const dispatch = useDispatch();
+
   const {
     titulo,
     foto,
@@ -23,6 +28,10 @@ export default function Item(props) {
     id,
     carrinho,
   } = props;
+
+  function atualizarCurFavorito() {
+    dispatch(atualizarFavorito(id));
+  }
 
   return (
     <div className={classNames(styles.item, {
@@ -41,10 +50,11 @@ export default function Item(props) {
             R$ {preco.toFixed(2)}
           </div>
           <div className={styles['item-acoes']}>
-            {favorito
-              ? <AiFillHeart {...iconeProps} color='#ff0000' className={styles['item-acao']} />
-              : <AiOutlineHeart {...iconeProps} className={styles['item-acao']} />
-            }
+            {favorito ? (
+              <AiFillHeart {...iconeProps} color='#ff0000' className={styles['item-acao']} onClick={atualizarCurFavorito} />
+            ) : (
+              <AiOutlineHeart {...iconeProps} className={styles['item-acao']} onClick={atualizarCurFavorito} />
+            )}
             <FaCartPlus
               {...iconeProps}
               color={true ? '#1875E8' : iconeProps.color}
