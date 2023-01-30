@@ -25,12 +25,12 @@ function Carrinho() {
       />
       <div className={styles.carrinho}>
         {carrinho?.map(item => <Item key={item.id} {...item} carrinho />)}
-      </div>
-      <div className={styles.total}>
-        <strong>Resumo da compras</strong>
-        <span>
-          Subtotal: <strong> R$ {0.0.toFixed(2)} </strong>
-        </span>
+        <div className={styles.total}>
+          <strong>Resumo da compras</strong>
+          <span>
+            Subtotal: <strong> R$ {0.0.toFixed(2)} </strong>
+          </span>
+        </div>
       </div>
     </section>
   )
