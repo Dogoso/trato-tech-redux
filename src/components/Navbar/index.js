@@ -3,6 +3,7 @@ import { ReactComponent as Logo } from "assets/logo.svg";
 import classNames from "classnames";
 import Busca from "components/Busca/busca";
 import { RiShoppingCartFill, RiShoppingCart2Line } from "react-icons/ri";
+import { Link } from "react-router-dom";
 
 const iconeProps = {
   color: "white",
@@ -15,22 +16,22 @@ export default function Navbar() {
       <Logo className={styles.logo} />
       <div className={styles.links}>
         <div>
-          <a href="/" className={classNames(styles.link, {
+          <Link to="/" className={classNames(styles.link, {
             [styles.selected]: window.location.pathname === "/"
           })}>
             Página inicial
-          </a>
+          </Link>
         </div>
       </div>
       <div className={styles.busca}>
         <Busca />
       </div>
       <div className={styles.icones}>
-        <a href="/carrinho">
+        <Link to="/carrinho">
           {window.location.pathname === "/carrinho" ? 
           <RiShoppingCartFill {...iconeProps} /> :
           <RiShoppingCart2Line {...iconeProps} />}
-        </a>
+        </Link>
       </div>
     </nav>
   )
