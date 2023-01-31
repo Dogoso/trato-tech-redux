@@ -1,7 +1,7 @@
 import Header from "components/Header/header";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import Item from "./Components/item";
+import Item from "components/Item/item";
 import styles from "./categoria.module.scss";
 
 function Categoria() {

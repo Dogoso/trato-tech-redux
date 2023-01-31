@@ -1,20 +1,25 @@
 import Header from "components/Header/header";
-import Item from "pages/Categoria/Components/item";
+import Item from "components/Item/item";
 import { useSelector } from "react-redux";
 import styles from "./carrinho.module.scss";
 
 function Carrinho() {
 
-  const carrinho = useSelector(state => {
-    const carrinhoReduce = state.carrinho.reduce((itens, itemNoCarrinho) => {
+  const { carrinho, total } = useSelector(state => {
+    let total = 0;
+    const carrinho = state.carrinho.reduce((itens, itemNoCarrinho) => {
       const item = state.itens.find(item => item.id === itemNoCarrinho.id);
+      total += (item.preco * itemNoCarrinho.quantidade);
       itens.push({
         ...item,
         quantidade: itemNoCarrinho.quantidade
       });
       return itens;
     }, []);
-    return carrinhoReduce;
+    return {
+      carrinho,
+      total
+    };
   });
 
   return (
@@ -28,7 +33,7 @@ function Carrinho() {
         <div className={styles.total}>
           <strong>Resumo da compras</strong>
           <span>
-            Subtotal: <strong> R$ {0.0.toFixed(2)} </strong>
+            Subtotal: <strong> R$ {total.toFixed(2)} </strong>
           </span>
         </div>
       </div>
