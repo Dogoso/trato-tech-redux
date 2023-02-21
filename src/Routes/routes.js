@@ -14,6 +14,7 @@ export default function Router() {
           <Route path="/categoria/:idCategoria/" element={<Categoria />} />
           <Route path="/carrinho" element={<Carrinho />} />
           <Route path="/anuncie" element={<Anuncie />} />
+          <Route path="/anuncie/:idCategoria/" element={<Anuncie />} />
         </Route>
       </Routes>
     </BrowserRouter>

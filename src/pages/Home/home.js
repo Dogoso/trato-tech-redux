@@ -3,6 +3,7 @@ import styles from "./home.module.scss";
 import relogio from "assets/inicial.png";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Button from "components/Button/button";
 
 export default function Home() {
   const categorias = useSelector(state => state.categorias);
@@ -14,7 +15,11 @@ export default function Home() {
         descricao="Compre diversos tipos de produto no melhor site do Brasil"
         className={styles.header}
         imagem={relogio}
-      />
+      >
+        <Button onClick={() => navigate("/anuncie")}>
+          Quero anunciar!
+        </Button>
+      </Header>
       <div className={styles.categorias}>
         <div className={styles["categorias-title"]}>
           <h1>

@@ -4,7 +4,8 @@ export default function TituloComImagem({
   titulo,
   descricao,
   imagem,
-  className
+  className,
+  children
 }) {
   return (
     <div className={`${className} ${styles.header}`}>
@@ -18,6 +19,7 @@ export default function TituloComImagem({
           src={imagem}
         />
       </div>
+      {children}
     </div>
   )
 }
