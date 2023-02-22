@@ -1,5 +1,6 @@
 import Button from "components/Button/button";
 import Header from "components/Header/header";
+import Input from "components/Input/input";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -34,9 +35,9 @@ export default function Anuncie() {
         descricao="Anuncie seu produto no melhor site do Brasil"
       />
       <form onSubmit={handleSubmit(onFormSubmit)} className={styles.form}>
-        <input {...register("titulo", { required: true })} placeholder="Nome do produto" type="text" className={styles.input} />
-        <input {...register("descricao", { required: true })} placeholder="Descrição do produto" type="text" className={styles.input} />
-        <input {...register("foto", { required: true })} placeholder="URL da imagem do produto" type="text" className={styles.input} />
+        <Input {...register("titulo", { required: true })} placeholder="Nome do produto" type="text" />
+        <Input {...register("descricao", { required: true })} placeholder="Descrição do produto" type="text" />
+        <Input {...register("foto", { required: true })} placeholder="URL da imagem do produto" type="text" />
         <select 
           {...register("categoria", { required: true })} 
           className={styles.input}
@@ -45,7 +46,7 @@ export default function Anuncie() {
           <option value="" disabled>Selecione a categoria</option>
           {categorias.map(categoria => <option key={categoria.id} value={categoria.id}>{categoria.nome}</option>)}
         </select>
-        <input {...register("preco", { required: true, valueAsNumber: true })} placeholder="Preço" type="number" className={styles.input} />
+        <Input {...register("preco", { required: true, valueAsNumber: true })} placeholder="Preço" type="number" />
         <Button type="submit">Cadastrar produto</Button>
       </form>
     </section>

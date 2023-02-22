@@ -3,15 +3,19 @@ import {
   AiOutlineHeart,
   AiFillHeart,
   AiFillPlusCircle,
-  AiFillMinusCircle
+  AiFillMinusCircle,
+  AiOutlineCheck,
+  AiFillEdit
 } from 'react-icons/ai';
 import {
   FaCartPlus
 } from 'react-icons/fa';
 import classNames from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
-import { atualizarFavorito } from 'Store/reducers/itens';
+import { atualizarFavorito, atualizarItem } from 'Store/reducers/itens';
 import { alterarQuantidade, mudarCarrinho } from 'Store/reducers/carrinho';
+import { useState } from 'react';
+import Input from 'components/Input/input';
 
 const iconeProps = {
   size: 24,
@@ -25,6 +29,7 @@ const quantidadeProps = {
 
 export default function Item(props) {
 
+
   const {
     titulo,
     foto,
@@ -35,6 +40,9 @@ export default function Item(props) {
     carrinho,
     quantidade
   } = props;
+
+  const [modoEdicao, setModoEdicao] = useState(false);
+  const [novoTitulo, setNovoTitulo] = useState(titulo);
 
   const isInCarrinho = useSelector(state => state.carrinho.some(item => item.id === id));
   const dispatch = useDispatch();
@@ -56,7 +64,7 @@ export default function Item(props) {
       </div>
       <div className={styles['item-descricao']}>
         <div className={styles['item-titulo']}>
-          <h2>{titulo}</h2>
+          {modoEdicao ? <Input value={novoTitulo} onChange={setNovoTitulo} /> : <h2>{titulo}</h2>}
           <p>{descricao}</p>
         </div>
         <div className={styles['item-info']}>
@@ -87,6 +95,23 @@ export default function Item(props) {
                 onClick={resolverCarrinho}
               />
             )}
+            {modoEdicao ? <AiOutlineCheck 
+              {...iconeProps} 
+              className={styles['item-acao']} 
+              onClick={() => {
+                dispatch(atualizarItem({
+                  id,
+                  item: {
+                    titulo: novoTitulo
+                  }
+                }));
+                setModoEdicao(false);
+              }}
+            /> : <AiFillEdit 
+              {...iconeProps} 
+              className={styles['item-acao']} 
+              onClick={() => setModoEdicao(true)}
+            /> }
           </div>
         </div>
       </div>

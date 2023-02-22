@@ -240,9 +240,15 @@ const itensSlice = createSlice({
       },
       adicionarItem: (state, { payload }) => {
         state.push({ ...payload, id: uuid() });
+      },
+      atualizarItem: (state, { payload }) => {
+        state.map(item => {
+          if(item.id === payload.id) Object.assign(item, payload.item);
+          return item;
+        })
       }
     }
 });
 
-export const { atualizarFavorito, adicionarItem } = itensSlice.actions;
+export const { atualizarFavorito, adicionarItem, atualizarItem } = itensSlice.actions;
 export const itensReducer = itensSlice.reducer;
